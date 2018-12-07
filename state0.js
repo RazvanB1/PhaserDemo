@@ -6,12 +6,13 @@ var demo = {};
 var centerX = 1500 / 2;
 var centerY = 1000 / 2;
 var spider;
-var speeed = 4;
+var speeed = 6;
 
 demo.state0 = function(){};
 demo.state0.prototype ={
     preload: function(){
-        game.load.image('spider','assets/spryte.png');
+        game.load.image('spider','assets/sprite/spryte.png');
+        game.load.image('fundal','assets/backgrounds/background.png');
     },
     create: function(){
         game.stage.backgroundColor = '#f4d942';
@@ -25,9 +26,13 @@ demo.state0.prototype ={
         addChangeStateEventListeners();
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
+        var fundalBG = game.add.sprite(0, 0, 'fundal');
         spider = game.add.sprite(centerX,centerY, 'spider');
         spider.anchor.x = 0.5;
         spider.anchor.y = 0.5;
+        spider.scale.setTo(1.5,1.5);
+
+
     },
     update: function(){
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
