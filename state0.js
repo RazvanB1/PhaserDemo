@@ -3,11 +3,18 @@
  */
 
 var demo = {};
+var centerX = 1500 / 2;
+var centerY = 1000 / 2;
+var spider;
+var speeed = 4;
+
 demo.state0 = function(){};
 demo.state0.prototype ={
-    preload: function(){},
+    preload: function(){
+        game.load.image('spider','assets/spryte.png');
+    },
     create: function(){
-        game.stage.backgroundColor = '#80ff80';
+        game.stage.backgroundColor = '#f4d942';
         console.log('state0');
 
         //game.input.keyboard.addKey(Phaser.Keyboard.ONE).onDown.add(changeState, null, null, 1);
@@ -18,8 +25,23 @@ demo.state0.prototype ={
         addChangeStateEventListeners();
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
+        spider = game.add.sprite(centerX,centerY, 'spider');
+        spider.anchor.x = 0.5;
+        spider.anchor.y = 0.5;
     },
-    update: function(){}
+    update: function(){
+        if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+            spider.x += speeed;
+        }else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+            spider.x -= speeed;
+        }
+
+        if (game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+            spider.y -= speeed;
+        }else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
+            spider.y += speeed;
+        }
+    }
 }
 
 function changeState(i, stateNum){
