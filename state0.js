@@ -16,6 +16,7 @@ demo.state0.prototype ={
         //addKeyCallback(Phaser.Keyboard.ZERO, changeState, 0);
         //unu este mai sus. AddKeyCallback face exact ce face unu de mai sus
         addChangeStateEventListeners();
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     },
     update: function(){}
