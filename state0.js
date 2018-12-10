@@ -11,13 +11,15 @@ var speeed = 6;
 demo.state0 = function(){};
 demo.state0.prototype ={
     preload: function(){
-        game.load.image('spider','assets/sprite/spryte.png');
+        //game.load.image('spider','assets/sprite/spryte.png');
+        game.load.spritesheet('spider','assets/spritesheets/spiderSheet.png',150, 149 );
         game.load.image('fundal','assets/backgrounds/background_bun.png');
     },
     create: function(){
+        game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.backgroundColor = '#f4d942';
         console.log('state0');
-        game.world.setBounds(0, 0, 1280, 665);
+        game.world.setBounds(0, 0,2811, 460);
         //game.input.keyboard.addKey(Phaser.Keyboard.ONE).onDown.add(changeState, null, null, 1);
         //game.input.keyboard.addKey(Phaser.Keyboard.ZERO).onDown.add(changeState, null, null, 0);
 
@@ -32,17 +34,33 @@ demo.state0.prototype ={
         spider.anchor.y = 0.5;
         spider.scale.setTo(1.5,1.5);
 
+        game.physics.enable(spider);
+        spider.body.collideWorldBounds = true;
+
+        spider.animations.add('walk',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]);
+
         game.camera.follow(spider);
+        game.camera.deadzone = new Phaser.Rectangle(centerX - 300, 0, 600, 1000);
     },
     update: function(){
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
             spider.x += speeed;
+            spider.scale.setTo(1.5,1.5);
+            spider.animations.play('walk', 15, true);
         }else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
             spider.x -= speeed;
+            spider.scale.setTo(-1.5,1.5);
+            spider.animations.play('walk', 15, true);
         }
-
+        else{
+            spider.animations.stop('walk');
+            spider.frame = 0;
+        }
         if (game.input.keyboard.isDown(Phaser.Keyboard.UP)){
             spider.y -= speeed;
+            if(spider.y < 395){
+                spider.y = 395;
+            }
         }else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
             spider.y += speeed;
         }
