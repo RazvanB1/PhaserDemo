@@ -12,12 +12,12 @@ demo.state0 = function(){};
 demo.state0.prototype ={
     preload: function(){
         game.load.image('spider','assets/sprite/spryte.png');
-        game.load.image('fundal','assets/backgrounds/background.png');
+        game.load.image('fundal','assets/backgrounds/background_bun.png');
     },
     create: function(){
         game.stage.backgroundColor = '#f4d942';
         console.log('state0');
-
+        game.world.setBounds(0, 0, 1280, 665);
         //game.input.keyboard.addKey(Phaser.Keyboard.ONE).onDown.add(changeState, null, null, 1);
         //game.input.keyboard.addKey(Phaser.Keyboard.ZERO).onDown.add(changeState, null, null, 0);
 
@@ -32,7 +32,7 @@ demo.state0.prototype ={
         spider.anchor.y = 0.5;
         spider.scale.setTo(1.5,1.5);
 
-
+        game.camera.follow(spider);
     },
     update: function(){
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
