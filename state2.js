@@ -2,10 +2,11 @@
  * Created by mbadea on 12/7/2018.
  */
 
+
 demo.state2 = function(){};
 demo.state2.prototype ={
     preload: function(){
-        game.load.spritesheet('spider','assets/spritesheets/spiderSheet.png',150, 150, 20);
+        game.load.spritesheet('spider','assets/spritesheets/paianjen.png',152, 152, 180);
     },
     create: function(){
         game.stage.backgroundColor = '#80ff80';
@@ -18,7 +19,7 @@ demo.state2.prototype ={
 
         spider.animations.add('bounce');
 
-        spider.animations.play('bounce', 50, false);
+        spider.animations.play('bounce', 20, true);
 
 
     },
