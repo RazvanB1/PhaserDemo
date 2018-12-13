@@ -2,30 +2,35 @@
  * Created by mbadea on 12/7/2018.
  */
 
-var texte;
+var hsText = [];
+var hs = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
 demo.state9 = function(){};
 demo.state9.prototype ={
-    preload: function(){},
+    preload: function(){
+        game.load.image('button1','assets/sprite/button1.png');
+        game.load.image('button2','assets/sprite/button2.png');
+    },
     create: function(){
-        game.stage.backgroundColor = '#DDDDDD';
+        game.stage.backgroundColor = '#80ff80';
         addChangeStateEventListeners();
 
-        texte = 'Months on ye at by esteem desire warmth former. Sure that that way gave any fond now. His boy middleton sir nor engrossed affection excellent. Dissimilar compliment cultivated preference eat sufficient may. Well next door soon we mr he four. Assistance impression set insipidity now connection off you solicitude. Under as seems we me stuff those style at. Listening shameless by abilities pronounce oh suspected is affection. Next it draw in draw much bred.';
-
-        game.add.text(100, 400, 'hello', {fontSize: '100px', fill: '#fff'});
-
-        this.spellOutText(100, 100, 1000, texte, 50, 40 ,'#fff');
-    },
-    spellOutText: function(x, y, width, text, fontSize, speed, fill, font){
-        var sentence = game.add.text(x,y, '', {fontSize: fontSize +'px', fill: fill, font: font});
-        var loopVar = game.time.events.loop(speed, addChar);
-
-        var index = 0;
-
-        function addChar() {
-            sentence.text += texte[index];
-            index++;
+        for(var i = 1; i< 11; i++){
+            game.add.text(500, 20 + (i * 90), i + '.', {fontSize: '40px'}).anchor.setTo(1,0);
         }
+
+        for (var i = 1; i< 10; i++){
+            hsText[i] = game.add.text(500, 20 + ((i + 1) * 90), hs[i], {fontSize: '40px'})
+        }
+        game.add.button(800, 400, 'button1', function(){
+
+        });
+        game.add.button(800, 600, 'button2', function(){
+
+        });
+
+        //obj.sort(function(a, b){
+        // return b-a;
+        // )  -- returneaza de la mare la mic
     }
 }
